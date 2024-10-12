@@ -1,0 +1,11 @@
+.header-banner {
+    position: sticky;
+    top: 0;
+    background-color: darkslategrey;
+    color: #ffbf00;
+    padding: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
