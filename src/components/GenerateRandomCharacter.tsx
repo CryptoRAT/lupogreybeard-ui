@@ -140,16 +140,13 @@ const GenerateRandomCharacter = () => {
         console.log("service url: " + process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL);
         axios
             .post(
-                process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "api/killer/random/",
+                process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "random/killer/",
                 // Data to be sent in the request body, if any (optional)
                 {action: 'random'},
                 // Config object with additional options
                 {
                     headers: {
                         'Content-Type': 'application/json', // Make sure to set the appropriate content type
-                    },
-                    params: {
-                        // Custom parameters if needed
                     },
                 }
             )
@@ -167,7 +164,7 @@ const GenerateRandomCharacter = () => {
         console.log("Entering getRandomKillerPerks");
         // Get random survivor perks
         axios
-            .post(process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "api/perk/killer/random/")
+            .post(process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "random/perk/killer/")
             .then((res) => {
                 console.log("Inside then block");
                 setRandomKillerPerks(res.data);
@@ -183,16 +180,13 @@ const GenerateRandomCharacter = () => {
         console.log("service url: " + process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL);
         axios
             .post(
-                process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "api/survivor/random/",
+                process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "random/survivor/",
                 // Data to be sent in the request body, if any (optional)
                 {action: 'random'},
                 // Config object with additional options
                 {
                     headers: {
                         'Content-Type': 'application/json', // Make sure to set the appropriate content type
-                    },
-                    params: {
-                        // Custom parameters if needed
                     },
                 }
             )
@@ -211,7 +205,7 @@ const GenerateRandomCharacter = () => {
         console.log("Entering getRandomSurvivorPerks");
         // Get random survivor perks
         axios
-            .post(process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "api/perk/survivor/random/")
+            .post(process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "random/perk/survivor/")
             .then((res) => {
                 console.log("Inside then block");
                 setRandomSurvivorPerks(res.data);

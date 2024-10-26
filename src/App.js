@@ -3,7 +3,7 @@ import "./App.css";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Header from "./components/Header";
 import GenerateRandomCharacter from "./components/GenerateRandomCharacter";
-import CryptoratLandingPage from "./components/CryptoratLandingPage";
+import LupoGreybeardLandingPage from "./components/LupoGreybeardLandingPage";
 
 
 class App extends Component {
@@ -15,8 +15,8 @@ class App extends Component {
                     (
                         <div>
                             <Routes>
-                                <Route path="/dbd/" element={<GenerateRandomCharacter/>}/>
-                                <Route path="/" element={<CryptoratLandingPage/>}/>
+                                <Route path="/random/" element={<GenerateRandomCharacter/>}/>
+                                <Route path="/" element={<LupoGreybeardLandingPage/>}/>
                             </Routes>
                         </div>
                     )
