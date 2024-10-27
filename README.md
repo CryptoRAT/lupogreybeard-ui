@@ -1,8 +1,7 @@
-# DBD Randomizer Web UI
+# LupoGreybeard Web UI
 
 This project provides a web frontend using React, Redux, and Typescript. It utilizes the backend service, 
-[dbd_ranodmizer_service](https://github.com/CryptoRAT/dbd_randomizer_service) to provide character builds for
-the hit asymetrical horror game [Dead By Daylight](https://deadbydaylight.com/).
+a java backend as an api server.
 
 ## Available Scripts
 
