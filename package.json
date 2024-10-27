@@ -1,67 +1,60 @@
 {
   "name": "lupogreybeard-ui",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1",
+  "description": "Frontend server for lupogreybeard.com",
+  "main": "build/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "clean": "rm -rf ./build/",
+    "build": "yarn run clean && yarn install && tsc && yarn run copy-public",
+    "copy-public": "copyfiles -u 1 public/* build/",
+    "start": "yarn run build && serve -s build",
+    "dev": "react-scripts start",
+    "test": "NODE_OPTIONS=--experimental-import-meta-resolve && jest --config config/jest.config.js --runInBand",
+    "test:prepush": "NODE_ENV=test && yarn run reset:full && yarn install && yarn run build && yarn run test && yarn run start",
+    "lint": "eslint . --config config/eslintrc.js --ext .ts",
+    "reset": "rimraf node_modules coverage build && yarn cache clean && yarn install"
+  },
+  "keywords": [],
+  "author": "Luke Elliot",
   "dependencies": {
-    "@babel/plugin-syntax-flow": "^7.24.7",
-    "@babel/plugin-transform-react-jsx": "^7.25.2",
-    "@babel/plugin-transform-private-property-in-object": "^7.24.7",
-    "@popperjs/core": "^2.11.8",
-    "axios": "^1.6.1",
-    "bootstrap": "^5.3.3",
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.3",
+    "@babel/plugin-proposal-private-property-in-object": "latest",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.0.2",
+    "@mui/material": "^6.0.2",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.0",
+    "@testing-library/user-event": "^13.1.4",
+    "axios": "^1.6.5",
+    "bootstrap": "^5.3.2",
     "build": "^0.1.4",
-    "caniuse-lite": "^1.0.30001651",
     "env-cmd": "^10.1.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.0",
-    "react-scripts": "^5.0.1",
-    "reactstrap": "^9.2.2",
-    "web-vitals": "^4.2.3"
+    "react-scripts": "^5.0.0",
+    "reactstrap": "^9.2.1",
+    "serve": "^14.2.1",
+    "tsx": "^4.19.2",
+    "web-vitals": "^2.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.0",
     "@babel/core": "^7.23.3",
+    "@babel/plugin-proposal-private-property-in-object": "latest",
     "@babel/preset-env": "^7.23.3",
-    "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.23.3",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.4.8",
-    "@testing-library/react": "^16.0.0",
-    "@testing-library/user-event": "^14.5.2",
-    "@types/react": "^18.3.3",
     "babel-jest": "^29.7.0",
+    "copyfiles": "^2.4.1",
     "jest": "^29.7.0",
     "serve": "^14.2.1",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.5.4"
-  },
-  "scripts": {
-    "clean": "rm -rf build",
-    "clean:full": "rm -rf build && rm -rf node_modules",
-    "start": "npx serve -s build",
-    "dev": "env-cmd -f .env.local react-scripts start",
-    "build": "env-cmd -f .env.production react-scripts build",
-    "docker:dev": "docker-compose up --build",
-    "lint": "eslint \"**/*.js\" --ignore-pattern node_modules/ --ignore-pattern build/",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "type-check": "tsc --noEmit",
-    "tsc": "tsc",
-    "prettier": "prettier --write \"**/*.{ts,tsx}\"",
-    "lint:ts": "eslint \"**/*.{ts,tsx}\" --ignore-pattern node_modules/ --ignore-pattern build/",
-    "test:ts": "ts-jest"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "axios": "axios/dist/node/axios.cjs"
-    }
+    "typescript": "^5.3.3"
   },
   "browserslist": {
     "production": [
