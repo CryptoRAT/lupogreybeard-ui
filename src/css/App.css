@@ -1,0 +1,28 @@
+.App-layout {
+  display: flex; /* Establishes a flex container */
+  min-height: 100vh; /* Ensures the container takes at least the height of the viewport */
+}
+
+.App-nav {
+  flex: 1; /* Assigns a flex-grow value of 1, allowing this element to grow */
+  width: 200px; /* Sets a fixed width for the navigation */
+  background-color: #f0f0f0; /* Gives a slight background color for contrast */
+  padding: 20px; /* Adds some padding around the links */
+  box-sizing: border-box; /* Ensures padding does not affect the width */
+}
+
+.App-main {
+  flex: 3; /* Allows the main area to take more space than the navigation */
+  padding: 20px; /* Adds some padding for content */
+}
+
+nav a {
+  display: block;
+  margin-bottom: 10px; /* Adds space between links */
+  text-decoration: none;
+  color: #333; /* Dark color for better readability */
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
