@@ -26,9 +26,9 @@
     "baseUrl": ".",
     "paths": {
       "@config/*": ["config/*"],
-      "@utils/*": ["src/utils/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": ["src/**/*", "config/**/*"],
-  "exclude": ["node_modules", "**/*.cjs", "**/*.js", "coverage"]
+  "exclude": ["node_modules", "**/*.cjs", "**/*.js", "coverage", "build"]
 }
