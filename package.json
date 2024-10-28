@@ -4,14 +4,17 @@
   "description": "Frontend server for lupogreybeard.com",
   "main": "build/server.js",
   "type": "commonjs",
+  "license" : "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "node": "20.16.0"
+  },
   "scripts": {
     "clean": "rm -rf ./build/",
-    "build": "yarn run clean && yarn install && tsc && yarn run copy-public",
-    "copy-public": "copyfiles -u 1 public/* build/",
-    "start": "yarn run build && serve -s build",
-    "dev": "react-scripts start",
-    "test": "NODE_OPTIONS=--experimental-import-meta-resolve && jest --config config/jest.config.js --runInBand",
-    "test:prepush": "NODE_ENV=test && yarn run reset:full && yarn install && yarn run build && yarn run test && yarn run start",
+    "build": "react-scripts build",
+    "start": "react-scripts start",
+    "start:docker": "docker-compose up --build",
+    "test": "NODE_OPTIONS=--experimental-import-meta-resolve && jest --config config/jest.config.js --runInBand --verbose",
+    "test:prepush": "NODE_ENV=test && yarn run reset:full && yarn install && yarn build && yarn test && yarn start:docker",
     "lint": "eslint . --config config/eslintrc.js --ext .ts",
     "reset": "rimraf node_modules coverage build && yarn cache clean && yarn install"
   },

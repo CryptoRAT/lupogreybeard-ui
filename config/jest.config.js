@@ -1,12 +1,17 @@
 const { pathsToModuleNameMapper } = require('ts-jest');
-const tsconfig = require('./tsconfig.json');
+const fs = require('fs');
+const path = require('path');
+
+// Read the tsconfig.json as a string and parse it to avoid potential JSON parsing errors
+const tsconfig = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../tsconfig.json'), 'utf8'));
 
 /** @type {import('jest').Config} */
 const config = {
+    rootDir: path.resolve(__dirname, '../'),
     preset: 'ts-jest',
     testEnvironment: 'node',
     moduleFileExtensions: ['ts', 'js'],
-    testMatch: ['**/__test__/**/*.test.ts'],
+    testMatch: ['<rootDir>/src/**/__tests__/**/*.test.ts'],
     transform: {
         "^.+\\.(ts)$": "ts-jest"
     },
@@ -20,7 +25,7 @@ const config = {
         },
     },
     moduleNameMapper: pathsToModuleNameMapper(tsconfig.compilerOptions.paths, { prefix: '<rootDir>/' }),
-    setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+    setupFilesAfterEnv: ['<rootDir>/config/jest.setup.ts'],
 };
 
 module.exports = config;
