@@ -1,5 +1,6 @@
-import './css/App.css';
+import '@css/App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import routes from './routes/routes.tsx';
 
 function App() {
   return (
@@ -7,12 +8,14 @@ function App() {
         <div className="App">
           <div className="App-layout">
             <nav className="App-nav">
-              <Link to="/hello-world">Hello World</Link>
+              <Link to="/dbd/">Dead By Daylight</Link>
             </nav>
             <main className="App-main">
-              <Routes>
-                <Route path="/hello-world" element={<h1>Hello World!</h1>} />
-              </Routes>
+                <Routes>
+                    {routes.map((route, index) => (
+                        <Route key={index} path={route.path} element={route.element} />
+                    ))}
+                </Routes>
             </main>
           </div>
         </div>

@@ -1,0 +1,63 @@
+div.card {
+    background-color: darkslategrey;
+    color: white;
+}
+div.card.p-3.RandomPerksList {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+div.card.p-3.RandomSurvivorNameAndImage {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+div.card.p-3.RandomSurvivorNameAndImage img{
+    width:  300px;
+    height: auto; /* Maintain the aspect ratio */
+}
+
+
+.mb-4 {
+    text-align: center;
+}
+
+.randomPerkName {
+    text-align: center;
+}
+
+
+@media only screen and (max-width: 767px) {
+    /* Styles for phones */
+    div.card.p-3.RandomPerksList {
+        width: 100%;
+        justify-content: space-around;
+        text-align: center;
+        flex-direction: column;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    /* Styles for tablets */
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) and (orientation: landscape) {
+    /* Styles for landscape tablets */
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    /* Styles for small laptops and desktops */
+    div.card.p-3.RandomPerksList {
+        width: 100%;
+        justify-content: space-around;
+        text-align: center;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    /* Styles for desktops */
+}
+
+
+
