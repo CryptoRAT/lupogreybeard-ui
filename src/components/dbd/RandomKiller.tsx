@@ -1,5 +1,5 @@
 import React from "react";
-import '@css/dbd/RandomKiller.css';
+import '@components/dbd/RandomKiller.css';
 
 interface Killer {
     id: number;
