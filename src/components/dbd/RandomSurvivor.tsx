@@ -1,5 +1,5 @@
 import React from "react";
-import '@css/dbd/RandomSurvivor.css';
+import '@components/dbd/RandomSurvivor.css';
 
 interface Survivor {
     id: number;

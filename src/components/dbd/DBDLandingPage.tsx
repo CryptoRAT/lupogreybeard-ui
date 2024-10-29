@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import '@css/LandingPage.css';
+import '@components/LandingPage.css';
 
 const DBDLandingPage: React.FC = () => {
     return (

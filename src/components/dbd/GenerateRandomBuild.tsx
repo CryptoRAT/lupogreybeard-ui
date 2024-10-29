@@ -1,8 +1,8 @@
-import RandomSurvivor from "./RandomSurvivor.tsx";
-import RandomKiller from "./RandomKiller.tsx";
+import RandomSurvivor from "@components/dbd/RandomSurvivor";
+import RandomKiller from "@components/dbd/RandomKiller";
 import {useState} from "react";
 import axios from "axios";
-import '@css/dbd/GenerateRandomBuild.css';
+import '@components/dbd/GenerateRandomBuild.css';
 
 interface Survivor {
     id: number;

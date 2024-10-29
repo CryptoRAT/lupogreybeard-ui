@@ -12,13 +12,11 @@
     "target": "es6",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "build",
+    "outDir": "build/lib",
     "rootDir": ".",
-    "allowJs": true,
+    "allowJs": false,
     "checkJs": false,
-    "composite": true,
-    "emitDeclarationOnly": true,
-    "allowImportingTsExtensions": true,
+    "composite": false,
     "sourceMap": true,
     "skipLibCheck": true,
     "strict": true,
@@ -28,10 +26,11 @@
       "@config/*": ["config/*"],
       "@utils/*": ["src/utils/*"],
       "@components/*": ["src/components/*"],
-      "@routes/*": ["src/routes/*"],
-      "@css/*": ["src/css/*"]
+      "@routes/*": ["src/routes/*"]
     }
   },
-  "include": ["src/**/*", "config/**/*"],
+  "include": ["src/**/*", "config/**/*",
+    "react-app-alias.d.ts"
+  ],
   "exclude": ["node_modules", "**/*.cjs", "**/*.js", "coverage", "build"]
 }
