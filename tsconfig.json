@@ -26,7 +26,8 @@
       "@config/*": ["config/*"],
       "@utils/*": ["src/utils/*"],
       "@components/*": ["src/components/*"],
-      "@routes/*": ["src/routes/*"]
+      "@routes/*": ["src/routes/*"],
+      "@loggers/*": ["src/loggers/*"]
     }
   },
   "include": ["src/**/*", "config/**/*",

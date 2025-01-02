@@ -29,7 +29,7 @@ const GenerateRandomBuild = () => {
     const [randomSurvivor, setRandomSurvivor] = useState<Survivor>({
         id: 1,
         name: "Ace Visconti",
-        image_path: "static/survivors/ace_visconti.jpg",
+        image_path: "/survivors/ace_visconti.webp",
     });
     const [randomSurvivorPerks, setRandomSurvivorPerks] = useState<Perk[]>([
         {
@@ -37,28 +37,28 @@ const GenerateRandomBuild = () => {
             "name": "Ace in the Hole",
             "type": "Survivor",
             "owner": "Ace Visconti",
-            "image_path": "static/perks/ace_in_the_hole.webp"
+            "image_path": "/perks/ace_in_the_hole.webp"
         },
         {
             "id": 2,
             "name": "Plunderers Instinct",
             "type": "Survivor",
             "owner": "Common",
-            "image_path": "static/perks/plunderers_instinct.webp"
+            "image_path": "/perks/plunderers_instinct.webp"
         },
         {
             "id": 3,
             "name": "Windows of Opportunity",
             "type": "Survivor",
             "owner": "Kate Denson",
-            "image_path": "static/perks/windows_of_opportunity.webp"
+            "image_path": "/perks/windows_of_opportunity.webp"
         },
         {
             "id": 4,
             "name": "Bond",
             "type": "Survivor",
             "owner": "Dwight Fairfield",
-            "image_path": "static/perks/bond.webp"
+            "image_path": "/perks/bond.webp"
         },
     ]);
     const KILLER = 0;
@@ -122,52 +122,47 @@ const GenerateRandomBuild = () => {
     const calculateRandom = (type: number) => {
         console.log("Entering calculateRandom");
         console.log("Type: " + type);
+        const serviceUrl: string = process.env.REACT_APP_DBD_SERVICE_URL || "";
         setCurrent(type);
         if (type === KILLER) {
-            getRandomKiller();
-            getRandomKillerPerks();
+            getRandomKiller(serviceUrl);
+            getRandomKillerPerks(serviceUrl);
         } else {
-            getRandomSurvivor();
-            getRandomSurvivorPerks();
+            getRandomSurvivor(serviceUrl);
+            getRandomSurvivorPerks(serviceUrl);
         }
 
         console.log("Leaving calculateRandom");
     };
 
-    const getRandomKiller = () => {
+    const getRandomKiller = (server: string) => {
         console.log("Entering getRandomKiller");
         // Get a random survivor
-        console.log("service url: " + process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL);
+
+
+
+        console.log("server: " + server);
         axios
-            .post(
-                process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "api/killer/random/",
-                // Data to be sent in the request body, if any (optional)
-                {action: 'random'},
-                // Config object with additional options
-                {
-                    headers: {
-                        'Content-Type': 'application/json', // Make sure to set the appropriate content type
-                    },
-                    params: {
-                        // Custom parameters if needed
-                    },
-                }
+            .get(
+                server + '/api/killer/random',
             )
             .then((res) => {
-                console.log("Inside then block in post to killer/random/");
+                // logger.debug("Inside then block in post to killer/random/");
                 const killerData = Array.isArray(res.data) ? res.data[0] : res.data;
                 setRandomKiller(killerData);
-                console.log("Updated State with Killer Data:", killerData);
-                console.log("Leaving getRandomKiller");
+                // logger.debug("Updated State with Killer Data:", killerData);
+                // logger.debug("Leaving getRandomKiller");
             })
             .catch((err) => console.log(err));
     };
 
-    const getRandomKillerPerks = () => {
-        console.log("Entering getRandomKillerPerks");
+    const getRandomKillerPerks = (server: string) => {
+        // logger.debug("Entering getRandomKillerPerks");
+
+        // console.log("service url: " + serviceUrl);
         // Get random survivor perks
         axios
-            .post(process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "api/perk/killer/random/")
+            .get(server + '/api/perk/killer/randomx', {} )
             .then((res) => {
                 console.log("Inside then block");
                 setRandomKillerPerks(res.data);
@@ -177,24 +172,12 @@ const GenerateRandomBuild = () => {
             .catch((err) => console.log(err));
     };
 
-    const getRandomSurvivor = () => {
+    const getRandomSurvivor = (server: string) => {
         console.log("Entering getRandomSurvivor");
         // Get a random survivor
-        console.log("service url: " + process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL);
         axios
-            .post(
-                process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "api/survivor/random/",
-                // Data to be sent in the request body, if any (optional)
-                {action: 'random'},
-                // Config object with additional options
-                {
-                    headers: {
-                        'Content-Type': 'application/json', // Make sure to set the appropriate content type
-                    },
-                    params: {
-                        // Custom parameters if needed
-                    },
-                }
+            .get(
+                server + "/api/survivor/random/",
             )
             .then((res) => {
                 console.log("Inside then block");
@@ -207,11 +190,11 @@ const GenerateRandomBuild = () => {
     };
 
 
-    const getRandomSurvivorPerks = () => {
+    const getRandomSurvivorPerks = (server: string) => {
         console.log("Entering getRandomSurvivorPerks");
         // Get random survivor perks
         axios
-            .post(process.env.REACT_APP_DBD_RANDOMIZER_SERVICE_URL + "api/perk/survivor/random/")
+            .post(server + "/api/perk/survivor/random/")
             .then((res) => {
                 console.log("Inside then block");
                 setRandomSurvivorPerks(res.data);
