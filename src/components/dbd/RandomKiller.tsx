@@ -1,5 +1,6 @@
 import React from "react";
 import '@components/dbd/RandomKiller.css';
+import { DBD_S3_BUCKET} from "@config/index";
 
 interface Killer {
     id: number;
@@ -28,7 +29,7 @@ const RandomKiller: React.FC<RandomKillerProps> = ({killer, perks}) => {
             <div className="card p-3 RandomKillerNameAndImage">
                 <div>Killer: {killer.name}</div>
                 <div>
-                    <img className="profile-photo" src={`../${killer.image_path}`} alt={killer.name} />
+                    <img className="profile-photo" src={`${DBD_S3_BUCKET}/${killer.image_path}`} alt={killer.name} />
                 </div>
 
             </div>
@@ -36,7 +37,7 @@ const RandomKiller: React.FC<RandomKillerProps> = ({killer, perks}) => {
                 {perks.map((perk, index) => (
                     <div className="randomPerk" key={index}>
                         <div>
-                            <img className="profile-photo" src={`../${perk.image_path}`} alt={perk.name} />
+                            <img className="profile-photo" src={`${DBD_S3_BUCKET}/${perk.image_path}`} alt={perk.name} />
                         </div>
                         <div className="randomPerkName">
                             {perk.name}

@@ -22,61 +22,10 @@ app.use('/static', (req, _, next) => {
     next();
 });
 
-// Function to get the script source from the asset manifest
-function getScriptSrc() {
-    const manifestPath = path.join(__dirname, '../../', 'asset-manifest.json');
-    logger.debug(`Looking for manifest at: ${manifestPath}`);
 
-    if (!fs.existsSync(manifestPath)) {
-        logger.error(`Could not find manifest for ${manifestPath}`);
-        throw new Error(`Manifest file not found at: ${manifestPath}`);
-    }
-
-    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-    logger.debug(`Manifest contents: ${JSON.stringify(manifest)}`);
-
-    // Use the absolute path '/static/' for loading the JavaScript files
-    if (manifest && manifest.files && manifest.files['main.js']) {
-        const mainJsPath = path.join(__dirname, '../../', manifest.files['main.js']);
-
-        logger.debug(`Main JS file: ${manifest.files['main.js']}`);
-        logger.debug(`Looking for main.js at: ${mainJsPath}`);
-
-        // Check if the file exists
-        if (!fs.existsSync(mainJsPath)) {
-            logger.error(`Main.js file not found at: ${mainJsPath}`);
-            throw new Error(`Main.js file not found at: ${mainJsPath}`);
-        }
-
-        // Read the main.js file contents
-        const mainJsFileContent = fs.readFileSync(mainJsPath, 'utf8');
-        logger.debug(`Main.js file contents (first 500 characters): ${mainJsFileContent.slice(0, 500)}`);
-
-        return manifest.files['main.js'];
-    } else {
-        logger.error('Main script not found in asset-manifest.json');
-        throw new Error('Main script not found in asset-manifest.json');
-    }
-}
-
-// Serve the React app for any unknown routes
+// Serve the React app for any unknown baseRoutes
 app.get('*', (_, res) => {
-    const indexPath = path.join(__dirname, '../../', 'index.html');
-    logger.debug(`Looking for index.html at: ${indexPath}`);
-
-    if (!fs.existsSync(indexPath)) {
-        logger.error(`index.html not found at: ${indexPath}`);
-        throw new Error(`index.html not found at: ${indexPath}`);
-    }
-
-    let indexFile = fs.readFileSync(indexPath, 'utf8');
-    logger.debug(`Original index.html contents: ${indexFile}`);
-
-    const scriptSrc = getScriptSrc();
-    logger.debug(`Script src: ${scriptSrc}`);
-    indexFile = indexFile.replace('%SCRIPT_SRC%', scriptSrc);
-    logger.debug(`Modified index.html contents: ${indexFile}`);
-    res.send(indexFile);
+    res.sendFile(path.join(__dirname, '../../index.html'));
 });
 
 app.get('/health', (_, res) => {
